@@ -1,0 +1,20 @@
+.list-layout {
+    margin-top: 200px;
+    padding-right: 200px;
+    padding-left: 200px;
+}
+.header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: darkslategray;
+    font-weight: bold;
+    color: beige;
+    font-size: 30px;
+}
+
+.header-home{
+    margin-top: 1px;
+    padding: 15px;
+    font-weight: bold;
+
+}

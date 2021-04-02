@@ -1,0 +1,20 @@
+.list-btn {
+    color: darkslategray;
+}
+
+.grid-layout {
+    margin-top: 150px;
+    padding-left: 200px;
+    padding-right: 200px;
+
+}
+
+.card-list-first{
+    margin-top:60px;
+}
+
+.course-list{
+    margin-bottom: 200px;
+    z-index:-999999
+}
+
