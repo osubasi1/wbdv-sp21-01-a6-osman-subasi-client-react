@@ -47,6 +47,11 @@ const CourseRow = (
             <td>{owner}</td>
             <td>{lastModified}</td>
             <td>
+                <Link to={`/courses/${course._id}/quizzes`} className="course-title">
+                    Quizzes
+                </Link>
+            </td>
+            <td>
                 <i onClick={() => deleteCourse(course)} className="fa fa-times float-left"/>
                 {editing && <i onClick={() => saveTitle()}
                                className="fas fa-check float-right"/>}

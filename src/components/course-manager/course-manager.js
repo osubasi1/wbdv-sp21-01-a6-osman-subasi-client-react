@@ -4,6 +4,8 @@ import CourseGrid from "../course-grid/course-grid";
 import { Route } from "react-router-dom";
 import courseService, { findAllCourses } from "../../services/course-service";
 import CourseHeader from "../course-header/course-header";
+import QuizzesList from "../quizzes/quizzes-list"
+import Quiz from "../quizzes/quizzes-list"
 
 class CourseManager extends React.Component {
     newCourse = {
@@ -93,6 +95,7 @@ class CourseManager extends React.Component {
                         title={this.title}
                     />
                 </Route>
+
             </div>
         )
     }

@@ -24,6 +24,7 @@ export default class CourseTable
                             <th>Title</th>
                             <th>Owned By</th>
                             <th>Last Modified</th>
+                            <th>Quizzes</th>
                             <th>
                                 <Link to="/courses/grid">
                                     <i className="fas fa-2x fa-th float-right grid-btn"/>
