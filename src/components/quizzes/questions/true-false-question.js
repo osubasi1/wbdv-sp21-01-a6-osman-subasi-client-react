@@ -4,19 +4,21 @@ const TrueFalseQuestion = ({question}) => {
     const [givenAnswer, setGivenAnswer] = useState()
     const [graded, setGraded] = useState(false);
 
-    const checkAnswer = (studentAnswer) =>{
-        if(studentAnswer === question.correct && graded) {
-            return "list-group-item-success";
+    const checkAnswer = (studentAnswer) => {
+        if (studentAnswer === question.correct && graded) {
+            return ["list-group-item-success",
+                    <i className="fas fa-check float-right" style={{color: "green"}}/>];
+        } else if (studentAnswer !== question.correct && graded)
+            return ["list-group-item-danger",
+                    <i className="fas fa-times float-right" style={{color: "red"}}/>];
+        return ["", ""];
+    }
+    const checkAnswerCorrect = (studentAnswer) => {
+        if (studentAnswer === question.correct && graded) {
+            return ["list-group-item-success",
+                    <i className="fas fa-check float-right" style={{color: "green"}}/>];
         }
-             else if (studentAnswer !== question.correct && graded)
-                return "list-group-item-danger";
-            return "";
-        }
-    const checkAnswerCorrect = (studentAnswer) =>{
-        if(studentAnswer === question.correct && graded) {
-            return "list-group-item-success";
-        }
-        return "";
+        return ["", ""];
     }
     return (
         <div>
@@ -25,17 +27,17 @@ const TrueFalseQuestion = ({question}) => {
                 {question.question}
                 {
                     givenAnswer === question.correct && graded &&
-                    <i className="fas fa-check float-right" style={{color:"green"}}/>
+                    <i className="fas fa-check float-right" style={{color: "green"}}/>
                 }
                 {
                     givenAnswer !== question.correct && graded &&
-                    <i className="fas fa-times float-right" style={{color:"red"}}/>
+                    <i className="fas fa-times float-right" style={{color: "red"}}/>
                 }
             </h4>
             {
                 !graded &&
                 <ul className="list-group">
-                    <li className={"list-group-item" }>
+                    <li className={"list-group-item"}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
@@ -44,7 +46,7 @@ const TrueFalseQuestion = ({question}) => {
                             True
                         </label>
                     </li>
-                    <li className={"list-group-item" }>
+                    <li className={"list-group-item"}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
@@ -58,54 +60,58 @@ const TrueFalseQuestion = ({question}) => {
             {
                 graded && givenAnswer !== question.correct &&
                 <ul className="list-group">
-                    <li className={`list-group-item ${checkAnswer("true")}`}>
+                    <li className={`list-group-item ${checkAnswer("true")[0]}`}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
                                    name={question._id}
                                    defaultChecked={givenAnswer === "true"}
+                                   onChange={() => setGraded(false)}
                                    onClick={() => setGivenAnswer("true")}/>
                             True
                         </label>
-
+                        {checkAnswer("true")[1]}
                     </li>
-                    <li className={`list-group-item ${checkAnswer("false")}`}>
+                    <li className={`list-group-item ${checkAnswer("false")[0]}`}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
                                    name={question._id}
                                    defaultChecked={givenAnswer === "false"}
+                                   onChange={() => setGraded(false)}
                                    onClick={() => setGivenAnswer("false")}/>
                             False
                         </label>
+                        {checkAnswer("false")[1]}
                     </li>
                 </ul>
             }
             {
                 graded && givenAnswer === question.correct &&
                 <ul className="list-group">
-                    <li className={`list-group-item ${checkAnswerCorrect("true")}`}>
+                    <li className={`list-group-item ${checkAnswerCorrect("true")[0]}`}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
                                    name={question._id}
-
+                                   onChange={() => setGraded(false)}
                                    defaultChecked={givenAnswer === "true"}
                                    onClick={() => setGivenAnswer("true")}/>
                             True
                         </label>
-                        <i className="fas fa-check float-right"/>
+                        {checkAnswerCorrect("true")[1]}
                     </li>
-                    <li className={`list-group-item ${checkAnswerCorrect("false")}`}>
+                    <li className={`list-group-item ${checkAnswerCorrect("false")[0]}`}>
                         <label>
                             <input type="radio"
                                    className="mda-padded-radio-button"
                                    defaultChecked={givenAnswer === "false"}
-                                   // checked={givenAnswer === "false"}
                                    name={question._id}
-                                   onClick={() => setGivenAnswer("false")}/>
+                                   onClick={() => setGivenAnswer("false")}
+                            onChange={() => setGraded(false)}/>
                             False
                         </label>
+                        {checkAnswerCorrect("false")[1]}
                     </li>
                 </ul>
             }
