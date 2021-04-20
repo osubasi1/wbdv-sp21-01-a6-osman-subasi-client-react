@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question, submitted}) => {
 
-    const [givenAnswer, setGivenAnswer] = useState('')
-    const [graded, setGraded] = useState(false);
+    const [givenAnswer, setGivenAnswer] = useState()
     const checkAnswer = (answer) => {
-        if (answer === question.correct && graded) {
+        if (answer === question.correct && submitted) {
             return ["list-group-item-success",
                     <i className="fas fa-check float-right" style={{color: "green"}}/>];
-        } else if (answer !== question.correct && graded)
+        } else if (answer !== question.correct && submitted)
             return ["list-group-item-danger",
                     <i className="fas fa-times float-right" style={{color: "red"}}/>];
         return ["", ""];
     }
     const checkAnswerCorrect = (answer) => {
-        if (answer === question.correct && graded) {
+        if (answer === question.correct && submitted) {
             return ["list-group-item-success",
                     <i className="fas fa-check float-right" style={{color: "green"}}/>];
         }
@@ -27,16 +26,16 @@ const MultipleChoiceQuestion = ({question}) => {
                 <h4>
                     {question.question}
                     {
-                        question.correct === givenAnswer && graded &&
+                        question.correct === givenAnswer && submitted &&
                         <i className="fas fa-check float-right"/>
                     }
                     {
-                        question.correct !== givenAnswer && graded &&
+                        question.correct !== givenAnswer && submitted &&
                         <i className="fas fa-times float-right"/>
                     }
                 </h4>
                 {
-                    !graded &&
+                    !submitted &&
                     <ul className="list-group">
                         {
                             question.choices.map((choice) => {
@@ -46,8 +45,12 @@ const MultipleChoiceQuestion = ({question}) => {
                                             <input type="radio"
                                                    className="radio-button"
                                                    name={question._id}
-                                                   onClick={() => setGivenAnswer(choice)}
-                                            /> {choice}
+                                                   onClick={() => {
+                                                       setGivenAnswer(choice);
+                                                       question.answer = choice
+                                                   }}
+                                            />
+                                            {choice}
                                         </label>
                                         {checkAnswer(choice)[1]}
                                     </li>
@@ -58,7 +61,7 @@ const MultipleChoiceQuestion = ({question}) => {
                 }
 
                 {
-                    graded && givenAnswer !== question.correct &&
+                    submitted && givenAnswer !== question.correct &&
                     <ul className="list-group">
 
                         {
@@ -71,7 +74,10 @@ const MultipleChoiceQuestion = ({question}) => {
                                                        className="radio-button"
                                                        name={question._id}
                                                        defaultChecked={givenAnswer === choice}
-                                                       onClick={() => setGivenAnswer(choice)}
+                                                       onClick={() => {
+                                                           setGivenAnswer(choice);
+                                                           question.answer = choice
+                                                       }}
                                                 /> {choice}
                                             </label>
                                             <i className="fas fa-times float-right"
@@ -86,7 +92,10 @@ const MultipleChoiceQuestion = ({question}) => {
                                                        className="radio-button"
                                                        name={question._id}
                                                        defaultChecked={givenAnswer === choice}
-                                                       onClick={() => setGivenAnswer(choice)}
+                                                       onClick={() => {
+                                                           setGivenAnswer(choice);
+                                                           question.answer = choice
+                                                       }}
                                                 /> {choice}
                                             </label>
                                             {checkAnswer(choice)[1]}
@@ -100,7 +109,10 @@ const MultipleChoiceQuestion = ({question}) => {
                                                        className="radio-button"
                                                        name={question._id}
                                                        defaultChecked={givenAnswer === choice}
-                                                       onClick={() => setGivenAnswer(choice)}
+                                                       onClick={() => {
+                                                           setGivenAnswer(choice);
+                                                           question.answer = choice
+                                                       }}
                                                 /> {choice}
                                             </label>
 
@@ -112,7 +124,7 @@ const MultipleChoiceQuestion = ({question}) => {
                     </ul>
                 }
                 {
-                    graded && givenAnswer === question.correct &&
+                    submitted && givenAnswer === question.correct &&
                     <ul className="list-group">
                         {
                             question.choices.map((choice) => {
@@ -124,7 +136,10 @@ const MultipleChoiceQuestion = ({question}) => {
                                                    className="radio-button"
                                                    name={question._id}
                                                    defaultChecked={givenAnswer === choice}
-                                                   onClick={() => setGivenAnswer(choice)}
+                                                   onClick={() => {
+                                                       setGivenAnswer(choice);
+                                                       question.answer = choice
+                                                   }}
                                             /> {choice}
                                         </label>
                                         {checkAnswerCorrect(choice)[1]}
@@ -134,16 +149,19 @@ const MultipleChoiceQuestion = ({question}) => {
                         }
                     </ul>
                 }
+
                 <br/>
                 Your answer: {givenAnswer}
+                <br/>
+                question.answer is {question.answer}
             </li>
             <br/>
             <div className="row">
                 <div>
-                    <button className="btn btn-success"
-                            onClick={() => setGraded(true)}>
-                        Grade
-                    </button>
+                    {/*<button className="btn btn-success"*/}
+                    {/*        onClick={() => setGraded(true)}>*/}
+                    {/*    Grade*/}
+                    {/*</button>*/}
                 </div>
                 <div className="col-8">
                 </div>

@@ -12,6 +12,7 @@ const quizReducer = (state=initialState, action) => {
                 ...state,
                 quizzes: action.quizzes
             }
+
         default:
             return state
     }

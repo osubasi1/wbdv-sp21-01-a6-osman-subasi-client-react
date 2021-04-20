@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react'
-import {Link, useParams} from "react-router-dom";
+import React, { useEffect } from 'react'
+import { Link, useParams } from "react-router-dom";
 import quizService from '../../services/quiz-service'
 import {connect} from "react-redux";
 import {FIND_ALL_QUIZZES} from "../action-types/quiz-actions"
@@ -13,8 +13,11 @@ const QuizzesList = (
 ) => {
     useEffect(() => {
         findAllQuizzes()
+
     }, [findAllQuizzes])
+
     const {courseId} = useParams()
+
     return (
         <div>
             <h2>

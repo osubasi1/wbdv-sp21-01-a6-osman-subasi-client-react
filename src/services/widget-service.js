@@ -1,6 +1,6 @@
 
 // const WIDGET_URL =  "https://cs5610-hw5-java-server.herokuapp.com/api"
-const WIDGET_URL =  "http://localhost:8080/api/"
+const WIDGET_URL =  "http://localhost:8080/api"
 const createWidget = (tid, widget) =>
     fetch(`${WIDGET_URL}/topics/${tid}/widgets`, {
         method: 'POST',

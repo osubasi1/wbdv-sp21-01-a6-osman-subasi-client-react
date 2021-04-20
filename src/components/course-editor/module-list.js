@@ -68,7 +68,6 @@ const stpm = (state) => {
 const dtpm = (dispatch) => {
     return {
         createModule: (courseId, moduleName) => {
-
             moduleService.createModule(courseId, {title: moduleName})
                 .then(theActualModule => dispatch({
                                                       type: CREATE_MODULE,
