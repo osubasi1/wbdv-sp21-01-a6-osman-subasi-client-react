@@ -152,20 +152,9 @@ const MultipleChoiceQuestion = ({question, submitted}) => {
 
                 <br/>
                 Your answer: {givenAnswer}
-                <br/>
-                question.answer is {question.answer}
             </li>
             <br/>
-            <div className="row">
-                <div>
-                    {/*<button className="btn btn-success"*/}
-                    {/*        onClick={() => setGraded(true)}>*/}
-                    {/*    Grade*/}
-                    {/*</button>*/}
-                </div>
-                <div className="col-8">
-                </div>
-            </div>
+
             <hr/>
         </>
     )

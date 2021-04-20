@@ -142,10 +142,6 @@ const TrueFalseQuestion = (
                 Your answer: {givenAnswer}
             </div>
             <br/>
-            question.answer is {question.answer}
-            {/*<button className="btn btn-success" onClick={() => setGraded(true)}>*/}
-            {/*    Grade*/}
-            {/*</button>*/}
         </div>
     )
 }
